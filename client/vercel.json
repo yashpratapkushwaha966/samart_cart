@@ -1,8 +1,8 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://xyz.up.railway.app/api/:path*" },
-    { "source": "/uploads/:path*", "destination": "https://xyz.up.railway.app/uploads/:path*" },
-    { "source": "/socket.io/:path*", "destination": "https://xyz.up.railway.app/socket.io/:path*" },
+    { "source": "/api/:path*", "destination": "https://samart-cart.onrender.com/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://samart-cart.onrender.com/uploads/:path*" },
+    { "source": "/socket.io/:path*", "destination": "https://samart-cart.onrender.com/socket.io/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
