@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ---------- Theme variables (R G B). Light is the default. ---------- */
+:root {
+  --cream: 255 249 242; --surface: 255 255 255;
+  --ink: 32 25 21; --ink-soft: 91 79 71; --ink-mute: 140 127 118;
+  --p50: 255 243 236; --p100: 255 227 209; --p200: 255 196 162; --p300: 255 156 104; --p400: 250 116 54; --p500: 239 90 23; --p600: 212 68 16; --p700: 175 53 16; --p800: 138 44 20; --p900: 112 39 20;
+  --brand-50: var(--p50); --brand-100: var(--p100); --brand-200: var(--p200); --brand-300: var(--p300); --brand-400: var(--p400); --brand-500: var(--p500); --brand-600: var(--p600); --brand-700: var(--p700); --brand-800: var(--p800); --brand-900: var(--p900);
+}
+/* Custom theme: the customer picks an accent colour */
+[data-accent='green'] { --p50: 236 253 245; --p100: 209 250 229; --p200: 167 243 208; --p300: 110 231 183; --p400: 52 211 153; --p500: 16 185 129; --p600: 5 150 105; --p700: 4 120 87; --p800: 6 95 70; --p900: 6 78 59; }
+[data-accent='purple'] { --p50: 245 243 255; --p100: 237 233 254; --p200: 221 214 254; --p300: 196 181 253; --p400: 167 139 250; --p500: 139 92 246; --p600: 124 58 237; --p700: 109 40 217; --p800: 91 33 182; --p900: 76 29 149; }
+[data-accent='rose'] { --p50: 255 241 242; --p100: 255 228 230; --p200: 254 205 211; --p300: 253 164 175; --p400: 251 113 133; --p500: 244 63 94; --p600: 225 29 72; --p700: 190 18 60; --p800: 159 18 57; --p900: 136 19 55; }
+[data-accent='blue'] { --p50: 240 249 255; --p100: 224 242 254; --p200: 186 230 253; --p300: 125 211 252; --p400: 56 189 248; --p500: 14 165 233; --p600: 2 132 199; --p700: 3 105 161; --p800: 7 89 133; --p900: 12 74 110; }
+/* Dark theme: page, cards and text flip; light accent tints become dark tints */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --cream: 23 17 14; --surface: 36 28 23;
+  --ink: 246 236 227; --ink-soft: 207 193 182; --ink-mute: 157 143 133;
+  --brand-50: var(--p900); --brand-100: var(--p800); --brand-200: var(--p700);
+  --brand-600: var(--p400); --brand-700: var(--p300); --brand-800: var(--p200);
+}
+[data-theme='dark'] .bg-amber-50, [data-theme='dark'] .bg-amber-100 { background-color: rgb(70 52 14); }
+[data-theme='dark'] .text-amber-800 { color: #fcd34d; }
+[data-theme='dark'] .bg-red-50, [data-theme='dark'] .bg-red-100 { background-color: rgb(72 24 24); }
+[data-theme='dark'] .text-red-700, [data-theme='dark'] .text-red-600 { color: #fca5a5; }
+[data-theme='dark'] .bg-green-100 { background-color: rgb(20 60 38); }
+[data-theme='dark'] .text-green-800 { color: #86efac; }
+[data-theme='dark'] .bg-blue-100 { background-color: rgb(24 44 74); }
+[data-theme='dark'] .text-blue-800 { color: #93c5fd; }
+[data-theme='dark'] .bg-indigo-100 { background-color: rgb(40 36 84); }
+[data-theme='dark'] .text-indigo-800 { color: #a5b4fc; }
+[data-theme='dark'] .bg-purple-100 { background-color: rgb(52 30 80); }
+[data-theme='dark'] .text-purple-800, [data-theme='dark'] .text-purple-700 { color: #d8b4fe; }
+body { transition: background-color .25s ease, color .25s ease; }
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-cream font-sans text-ink antialiased; padding-bottom: env(safe-area-inset-bottom); }
+  h1, h2, h3 { @apply font-display; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-brand-500; }
+}
+
+@layer components {
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply bg-brand-500 text-white shadow-sm hover:bg-brand-600; }
+  .btn-dark { @apply bg-night text-white hover:bg-black; }
+  .btn-ghost { @apply border border-ink/15 bg-surface text-ink hover:bg-ink/5; }
+  .btn-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+  .btn-good { @apply bg-leaf text-white hover:bg-green-700; }
+  .btn-sm { @apply min-h-[36px] rounded-lg px-3 py-1.5 text-xs; }
+  .btn-lg { @apply min-h-[56px] rounded-2xl px-6 text-base; }
+  .input { @apply w-full rounded-xl text-ink border border-ink/15 bg-surface px-3.5 py-2.5 text-sm outline-none transition placeholder:text-ink-mute focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20; }
+  .label { @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-ink-soft; }
+  .card { @apply rounded-2xl bg-surface shadow-card; }
+  .badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .table-wrap { @apply overflow-x-auto rounded-2xl bg-surface shadow-card; }
+  .table { @apply w-full min-w-[640px] text-left text-sm; }
+  .table th { @apply whitespace-nowrap bg-ink/[.03] px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-soft; }
+  .table td { @apply border-t border-ink/5 px-4 py-3 align-middle; }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
